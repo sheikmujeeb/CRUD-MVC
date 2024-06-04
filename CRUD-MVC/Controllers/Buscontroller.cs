@@ -4,11 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
+using System.Data.SqlClient;
+using Crudlibrary;
 
 namespace CRUD_MVC.Controllers
 {
     public class Buscontroller : Controller
     {
+        Busdetails bus;
+        public Buscontroller()
+        {
+            bus = new Busdetails();
+        }
         // GET: Buscontroller
         public ActionResult Index()
         {
