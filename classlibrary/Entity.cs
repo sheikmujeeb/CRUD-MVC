@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CRUD_MVC.Models
+namespace classlibrary
 {
     public class BusDetails
     {
-        public long BusID { get; set; }
+        public int BusID { get; set; }
         public string BusName { get; set; }
-        public long DriverMobilenumber { get; set; }
+        public string DriverMobilenumber { get; set; }
         public string StartPoint { get; set; }
         public string Destination { get; set; }
         public long Fair { get; set; }

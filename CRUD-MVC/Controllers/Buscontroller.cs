@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 using Dapper;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using classlibrary;
 
 namespace CRUD_MVC.Controllers
 {
     public class Buscontroller : Controller
     {
-        IConfiguration config;
-       
-        public Buscontroller()
+        busrepos reg;
+
+        public Buscontroller(IConfiguration configg)
         {
-            
+            reg = new busrepos(configg);
         }
         // GET: Buscontroller
-        public ActionResult Index()
+        public ActionResult SPselectall()
         {
-            return View();
+            var Modeldata = reg.SPselectall();
+            return View("List",Modeldata);
         }
 
         // GET: Buscontroller/Details/5
