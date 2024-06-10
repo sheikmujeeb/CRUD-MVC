@@ -2,7 +2,7 @@
 
 namespace classlibrary
 {
-    public class BusDetails
+    public class Busdetails
     {
         public int BusID { get; set; }
         public string BusName { get; set; }

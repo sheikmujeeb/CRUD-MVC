@@ -11,23 +11,22 @@ namespace classlibrary
 {
     public class busrepos
     {
-        SqlConnection obj;
-        IConfiguration config;
-        public busrepos(IConfiguration configg)
+        SqlConnection Obj;
+        IConfiguration Config;
+        public busrepos(IConfiguration fig)
         {
-            config = configg;
-            var a = config.GetConnectionString("DbConnection");
-
-            obj= new SqlConnection();
+            Config = fig;
+            var a = Config.GetConnectionString("DbConnection");
+            Obj= new SqlConnection(a);
         }
-        public void SPLogin(BusDetails reg)
+        public void SPlogin(Busdetails reg)
         {
             try
             {
-                var insertsql = $"exec BusDetails('{reg.BusName}',{reg.DriverMobilenumber},'{reg.StartPoint}','{reg.Destination}',{reg.Fair},{reg.NoofPassenger})";
-                obj.Open();
-                obj.Execute(insertsql);
-                obj.Close();
+                var insertsql = $" Insert into Busdetails values('{reg.BusName}',{reg.DriverMobilenumber},'{reg.StartPoint}','{reg.Destination}',{reg.Fair},{reg.NoofPassenger})";
+                Obj.Open();
+                Obj.Execute(insertsql);
+                Obj.Close();
             }
             catch(SqlException )
             {
@@ -35,19 +34,76 @@ namespace classlibrary
             }
             catch(Exception)
             {
-                throw;
+                throw; 
             }
         }
-        public IEnumerable<BusDetails>SPselectall()
+        public IEnumerable<Busdetails> Showall()
         {
             try
             {
-                var show = $"Select * from BusDetails";
-                obj.Open();
-                var match = obj.Query<BusDetails>(show);
-                obj.Close();
-                return match;
+                var show = $" select * from Busdetails ";
+                Obj.Open();
+                var match = Obj.Query<Busdetails>(show);
+                Obj.Close();
+                return (match);
 
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public void SPupdate(int BusID,string StartPoint ,string Destination,long Fair,long NoofPassenger)
+        {
+            try
+            {
+                var up = $"exec SPupdate {BusID}'{StartPoint}''{Destination}'{Fair}{NoofPassenger};";
+                Obj.Open();
+                Obj.Execute(up);
+                Obj.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public void SPremove(string name)
+        {
+            try
+            {
+                var remove = ($"exec SPremove {name}");
+                Obj.Open();
+                Obj.Execute(remove);
+                Obj.Close();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public IEnumerable<Busdetails>Search(string name)
+        {
+            try
+            {
+                var search = ($"exec Search {name}");
+                Obj.Open();
+                var match = Obj.Query<Busdetails>(search);
+                Obj.Close();
+                return match;
             }
             catch (SqlException)
             {

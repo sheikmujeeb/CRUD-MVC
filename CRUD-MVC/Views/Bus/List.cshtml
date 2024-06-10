@@ -1,10 +1,10 @@
-﻿@model IEnumerable<classlibrary.BusDetails>
+﻿@model IEnumerable<classlibrary.Busdetails>
 
 @{
     ViewData["Title"] = "List";
 }
 
-<h1>List</h1>
+<h1>Show</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -61,9 +61,9 @@
                 @Html.DisplayFor(modelItem => item.NoofPassenger)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {id=item.BusID}) |
+                @Html.ActionLink("Details", "Details", new { name=item.BusName }) |
+                @Html.ActionLink("Delete", "Delete", new { name=item.BusName })
             </td>
         </tr>
 }

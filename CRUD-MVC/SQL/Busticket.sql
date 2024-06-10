@@ -9,6 +9,7 @@ Destination nvarchar(50) not null,
 Fair bigint not null,
 NoofPassenger bigint not null,
 )
+select * from Busdetails
 
 
 insert into Busdetails
@@ -46,7 +47,7 @@ end
 
 --For inserting values in Stored Procedure----------------------------------------------------------------
 
-exec SPsignup'SSS',9123456789,'Tirupur','Coimbatore',90,5
+exec SPLogin 'SSS',9123456789,'Tirupur','Coimbatore',90,5
 
 -- viewing -------------------------------------------------------------------------------------------
 
@@ -88,22 +89,25 @@ select * from Busdetails
 
 -------Selectall for Stored Procedure-----------------------------------------------------------------
 
-create or alter procedure SPselectall
+create or alter procedure selectall
 as begin 
 select * from Busdetails
 end
 
+exec selectall
+
+
 -------Search for Stored Procedure-------------------------------------------------------
 
-create or alter procedure SPsearch
+create or alter procedure Search
 (
 @BusName nvarchar(50)
 )
 as begin
 select * from Busdetails
-where BusName like '%'+@BusName+'%'
+where BusName=@BusName
 end
 
-exec SPsearch T
+exec Search SVT
 
 -----------------------------------------------------------------------------------------------------------

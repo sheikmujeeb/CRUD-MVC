@@ -15,37 +15,40 @@ namespace CRUD_MVC.Controllers
     {
         busrepos reg;
 
-        public Buscontroller(IConfiguration configg)
+        public Buscontroller(IConfiguration fig)
         {
-            reg = new busrepos(configg);
+            reg = new busrepos(fig);
         }
         // GET: Buscontroller
-        public ActionResult SPselectall()
+        public ActionResult Show()
         {
-            var Modeldata = reg.SPselectall();
-            return View("List",Modeldata);
+            var Model = reg.Showall();
+            return View("List", Model);
         }
 
         // GET: Buscontroller/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string name)
         {
-            return View();
+            var value =reg.Search(name);
+            return View("Details", value);
         }
 
         // GET: Buscontroller/Create
         public ActionResult Create()
         {
-            return View();
+            
+            return View("Create",new Busdetails());
         }
 
         // POST: Buscontroller/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Busdetails abc)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                reg.SPlogin(abc);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {
@@ -54,19 +57,21 @@ namespace CRUD_MVC.Controllers
         }
 
         // GET: Buscontroller/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string name)
         {
-            return View();
+               var find = reg.Search(name);
+               return View("Edit",find);
         }
 
         // POST: Buscontroller/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, string StartPoint,string Destination,long Fair,long NoofPassenger)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                reg.SPupdate(id,StartPoint,Destination,Fair,NoofPassenger);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {
@@ -75,19 +80,22 @@ namespace CRUD_MVC.Controllers
         }
 
         // GET: Buscontroller/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string name)
         {
-            return View();
+            var del = reg.Search(name);
+            return View("Delete", del);
         }
 
         // POST: Buscontroller/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Busdetails abc)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var name = abc.BusName;
+                reg.SPremove(name);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {
