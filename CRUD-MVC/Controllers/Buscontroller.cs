@@ -29,7 +29,7 @@ namespace CRUD_MVC.Controllers
         // GET: Buscontroller/Details/5
         public ActionResult Details(string name)
         {
-            var value =reg.Search(name);
+            var value =reg.Search(name).FirstOrDefault();
             return View("Details", value);
         }
 
@@ -59,7 +59,7 @@ namespace CRUD_MVC.Controllers
         // GET: Buscontroller/Edit/5
         public ActionResult Edit(string name)
         {
-               var find = reg.Search(name);
+               var find = reg.Search(name).FirstOrDefault();
                return View("Edit",find);
         }
 
@@ -82,7 +82,7 @@ namespace CRUD_MVC.Controllers
         // GET: Buscontroller/Delete/5
         public ActionResult Delete(string name)
         {
-            var del = reg.Search(name);
+            var del = reg.Search(name).FirstOrDefault();
             return View("Delete", del);
         }
 

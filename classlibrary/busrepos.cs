@@ -80,7 +80,7 @@ namespace classlibrary
         {
             try
             {
-                var remove = ($"exec SPremove {name}");
+                var remove = ($"exec SPremove '{name}'");
                 Obj.Open();
                 Obj.Execute(remove);
                 Obj.Close();
@@ -99,7 +99,7 @@ namespace classlibrary
         {
             try
             {
-                var search = ($"exec Search {name}");
+                var search = ($"exec Search '{name}'");
                 Obj.Open();
                 var match = Obj.Query<Busdetails>(search);
                 Obj.Close();
