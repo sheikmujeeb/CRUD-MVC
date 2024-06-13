@@ -1,12 +1,12 @@
 create table StartPoint
 (
 LocationID bigint not null Primary key identity(1,1),
-Location nvarchar(50) not null,
+Location nvarchar(50) unique,
 )
 
 
 ------------------------Created Stored Procedure--------------------------------------------------------------
-create procedure Pick
+create procedure Pickup
 (
 @Location nvarchar(50)
 )
@@ -16,15 +16,15 @@ values(
 @Location
 )
 end
+
+
 ------------------Adding Records-------------------------------------------------------------------------
-exec Pick Madurai
-exec Pick Coimbatore
-exec Pick Chennai
-exec Pick Bangalore
-exec Pick Trichy
+exec Pickup Madurai
+exec Pickup Coimbatore
+exec Pickup Chennai
+exec Pickup Bangalore
+exec Pickup Trichy
 
 select * from StartPoint
 
-delete StartPoint
-where 
-Location
+

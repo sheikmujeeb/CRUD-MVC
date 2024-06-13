@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace classlibrary
 {
@@ -12,6 +13,7 @@ namespace classlibrary
         public string BusName { get; set; }
         [Required]
         [Display(Name = "Driver Contact Number")]
+        [Range(1,9999999999, ErrorMessage ="Please Enter the correct number")]
         public string DriverMobilenumber { get; set; }
         [Required]
         [Display(Name = "Start Point")]
@@ -24,5 +26,7 @@ namespace classlibrary
         [Required]
         [Display(Name = "No.of.Passenger")]
         public long NoofPassenger { get; set; }
+        public int LocationID { get; set; }
+        public IEnumerable<StartPoint> Location { get; set; }
     }
 }

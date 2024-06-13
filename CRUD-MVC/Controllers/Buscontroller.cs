@@ -14,10 +14,12 @@ namespace CRUD_MVC.Controllers
     public class Buscontroller : Controller
     {
         busrepos reg;
+        IStartPoint value;
 
-        public Buscontroller(IConfiguration fig)
+        public Buscontroller(IConfiguration fig, IStartPoint obj)
         {
             reg = new busrepos(fig);
+            value = obj;
         }
         // GET: Buscontroller
         public ActionResult Show()
@@ -36,8 +38,10 @@ namespace CRUD_MVC.Controllers
         // GET: Buscontroller/Create
         public ActionResult Create()
         {
-            
-            return View("Create",new Busdetails());
+            var result = value.Showall();
+            var entity = new Busdetails();
+            entity.Location = result;
+            return View("Create",entity);
         }
 
         // POST: Buscontroller/Create

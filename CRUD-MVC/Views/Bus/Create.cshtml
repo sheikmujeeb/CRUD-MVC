@@ -12,11 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="BusID" class="control-label"></label>
-                <input asp-for="BusID" class="form-control" />
-                <span asp-validation-for="BusID" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="BusID" class="control-label"></label>
+            <input asp-for="BusID" class="form-control" />
+            <span asp-validation-for="BusID" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="BusName" class="control-label"></label>
                 <input asp-for="BusName" class="form-control" />
@@ -27,11 +27,7 @@
                 <input asp-for="DriverMobilenumber" class="form-control" />
                 <span asp-validation-for="DriverMobilenumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="StartPoint" class="control-label"></label>
-                <input asp-for="StartPoint" class="form-control" />
-                <span asp-validation-for="StartPoint" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Destination" class="control-label"></label>
                 <input asp-for="Destination" class="form-control" />
@@ -46,6 +42,13 @@
                 <label asp-for="NoofPassenger" class="control-label"></label>
                 <input asp-for="NoofPassenger" class="form-control" />
                 <span asp-validation-for="NoofPassenger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartPoint" class="control-label"></label>
+                <select asp-for="LocationID" asp-items="@(new SelectList(Model.Location,"LocationID","LocationName"))">
+                    <option value="0">-------Select-------</option>
+                </select>
+                <span asp-validation-for="LocationID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

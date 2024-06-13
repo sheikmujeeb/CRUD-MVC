@@ -41,7 +41,7 @@ namespace classlibrary
         {
             try
             {
-                var show = $" select * from Busdetails ";
+                var show = $" exec selectall ";
                 Obj.Open();
                 var match = Obj.Query<Busdetails>(show);
                 Obj.Close();
